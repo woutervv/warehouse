@@ -13,7 +13,7 @@ public class Product {
         products.add(new Product("1111111111111", "Paperclips 1",
                 "Paperclips description 1"));
         products.add(new Product("2222222222222", "Paperclips 2",
-                "Paperclips description "));
+                "Paperclips description 2"));
         products.add(new Product("3333333333333", "Paperclips 3",
                 "Paperclips description 3"));
         products.add(new Product("4444444444444", "Paperclips 4",
