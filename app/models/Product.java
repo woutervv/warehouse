@@ -1,5 +1,7 @@
 package models;
 
+import play.data.validation.Constraints;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,8 +24,12 @@ public class Product {
                 "Paperclips description 5"));
     }
 
+    @Constraints.Required
     public String ean;
+
+    @Constraints.Required
     public String name;
+
     public String description;
 
     public Product() {}

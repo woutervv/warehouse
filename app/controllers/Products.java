@@ -2,6 +2,7 @@ package controllers;
 
 import com.google.inject.Inject;
 import models.Product;
+import play.data.Form;
 import play.data.FormFactory;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -27,10 +28,24 @@ public class Products extends Controller {
     }
 
     public Result details(String ean) {
-        return TODO;
+        final Product product = Product.findByEan(ean);
+        if(product == null) {
+            return notFound(String.format("Product %s does not exist.", ean));
+        }
+
+        Form<Product> filledForm = formFactory.form(Product.class).fill(product);
+        return ok(details.render(filledForm));
     }
 
     public Result save() {
-        return TODO;
+        Form<Product> boundForm = formFactory.form(Product.class).bindFromRequest();
+        if(boundForm.hasErrors()) {
+            flash("error", "Please correct the form below.");
+            return badRequest(details.render(boundForm));
+        }
+        Product product = boundForm.get();
+        product.save();
+        flash("success", String.format("Successfully added product %s", product));
+        return redirect(routes.Products.list());
     }
 }
