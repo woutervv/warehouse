@@ -39,7 +39,7 @@ public class Product {
     }
 
     public static List<Product> findAll() {
-        return new ArrayList<Product>(products);
+        return new ArrayList<>(products);
     }
 
     public static Product findByEan(String ean) {
@@ -50,6 +50,7 @@ public class Product {
         }
         return null;
     }
+
     public static List<Product> findByName(String term) {
         final List<Product> results = new ArrayList<Product>();
         for (Product candidate : products) {
@@ -59,9 +60,11 @@ public class Product {
         }
         return results;
     }
+
     public static boolean remove(Product product) {
         return products.remove(product);
     }
+
     public void save() {
         products.remove(findByEan(this.ean));
         products.add(this);
