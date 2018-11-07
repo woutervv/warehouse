@@ -18,7 +18,11 @@ import views.html.products.details;
 public class Products extends Controller {
     @Inject FormFactory formFactory;
 
-    public Result list() {
+    public Result index() {
+        return redirect(routes.Products.list(0));
+    }
+
+    public Result list(Integer page) {
         List<Product> products = Product.findAll();
         return ok(list.render(products));
     }
@@ -46,7 +50,7 @@ public class Products extends Controller {
         Product product = boundForm.get();
         product.save();
         flash("success", String.format("Successfully added product %s", product));
-        return redirect(routes.Products.list());
+        return redirect(routes.Products.list(1));
     }
 
     public Result delete(String ean) {
@@ -55,6 +59,6 @@ public class Products extends Controller {
             return notFound(String.format("Product %s does not exist.", ean));
         }
         Product.remove(product);
-        return redirect(routes.Products.list());
+        return redirect(routes.Products.list(1));
     }
 }
