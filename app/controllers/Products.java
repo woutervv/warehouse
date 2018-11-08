@@ -1,5 +1,6 @@
 package controllers;
 
+import annotations.Catch;
 import com.google.inject.Inject;
 import models.Product;
 import play.data.Form;
@@ -9,12 +10,14 @@ import play.mvc.Result;
 
 import java.util.List;
 
+import play.mvc.With;
 import views.html.products.list;
 import views.html.products.details;
 
 /**
  * Created by wouter on 15-9-16.
  */
+@Catch
 public class Products extends Controller {
     @Inject FormFactory formFactory;
 
